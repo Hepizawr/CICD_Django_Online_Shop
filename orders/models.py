@@ -1,12 +1,19 @@
 from django.db import models
+from django.contrib.auth.models import User
 from products.models import Product, Discount
-from enum import Enum
 
 
 # Create your models here.
 class Order(models.Model):
-    customer = models.ForeignKey()  # User_account
-    status = models.  # Enum
+    customer = models.ForeignKey(User, on_delete=models.DO_NOTHING)  # User_account
+    order_status = (
+        ("Pr", "Processing"),
+        ("Co", "Confirmed"),
+        ("Ca", "Canceled"),
+        ("Dy", "Delivery"),
+        ("Dd", "Delivered"),
+    )
+    status = models.CharField(max_length=2, choices=order_status, default="Pr")  # Enum
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
