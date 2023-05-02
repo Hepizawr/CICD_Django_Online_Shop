@@ -20,7 +20,7 @@ class Product(models.Model):
 
 class ImageProduct(models.Model):
     product_id = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
+    image = models.ImageField(upload_to='products_img/', blank=True)
     priority = models.IntegerField(default=1)
 
     class Meta:
