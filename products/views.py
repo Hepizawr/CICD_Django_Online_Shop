@@ -3,15 +3,6 @@ from products.models import Product, ProductCategory, Discount
 
 
 # Create your views here.
-def index(request):
-    context = {
-        'title': "Famms",
-        'products': Product.objects.all()[:8],
-        'discounts': Discount.objects.all()[:2]
-    }
-    return render(request, 'products/index.html', context)
-
-
 def products(request, category_id=None):
     if category_id:
         products = Product.objects.filter(category=category_id)

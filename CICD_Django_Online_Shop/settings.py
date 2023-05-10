@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'index',
     'products',
 ]
 
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'CICD_Django_Online_Shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'index/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
