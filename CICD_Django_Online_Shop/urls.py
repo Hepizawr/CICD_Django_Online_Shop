@@ -18,12 +18,12 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-from index.views import index, contact
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('index.urls', namespace='index')),
     path('products/', include('products.urls', namespace='products')),
+    path('user/', include('users.urls', namespace='user')),
 ]
 
 if settings.DEBUG:
