@@ -1,0 +1,1 @@
+[{"model": "products.discount", "pk": 1, "fields": {"product": 2, "description": "", "value": 15, "active": true}}, {"model": "products.discount", "pk": 2, "fields": {"product": 4, "description": "", "value": 15, "active": true}}]
