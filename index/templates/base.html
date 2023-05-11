@@ -30,7 +30,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" href="{% url 'index:index' %}"><img width="250" src="{% static 'images/logo.png' %}"
-                                                                  alt="#"/></a>
+                                                                        alt="#"/></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class=""> </span>
@@ -47,6 +47,25 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'index:contact' %}">Contact</a>
                     </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="true"> <span
+                                    class="nav-label"> {{ user.username }} <span
+                                    class="caret"></span></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href={% url 'user:profile' %}>Profile</a></li>
+                                {% if user.is_superuser or user.is_staff %}
+                                    <li><a href={% url 'admin:index' %}>Admin panel</a></li>
+                                {% endif %}
+                                <li><a href="{% url 'user:logout' %}">Logout</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "user:login" %}">Sing-up</a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -201,4 +220,6 @@
 <script src="{% static 'js/bootstrap.js' %}"></script>
 <!-- custom js -->
 <script src="{% static 'js/custom.js' %}"></script>
+<!-- FontAwesome script -->
+<script src="{% static 'fontawesome/fontawesome-icons.js' %}" crossorigin="anonymous"></script>
 </body>
