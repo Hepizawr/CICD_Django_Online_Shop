@@ -377,7 +377,7 @@
                                         <a href="{% url 'products:category' product.category.id %}" class="option1">
                                             {{ product.category.name }}
                                         </a>
-                                        <a href="" class="option2">
+                                        <a href="{% url 'order:basket_add' product.id %}" class="option2">
                                             Buy Now
                                         </a>
                                     </div>
