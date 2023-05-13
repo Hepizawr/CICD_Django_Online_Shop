@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section>
+        <div class="container pt-5 vh-100">
+            <div class="text-center mt-5">
+                {% if orders %}
+                    <h1>Orders</h1>
+                    <div class="orders mt-5">
+                        <table class="table">
+                            <thead>
+                            <tr class="table-light">
+                                <th scope="col">#</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Created date</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Items</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for order in orders %}
+                                <tr
+                                        {% if order.status == "Pr" %}
+                                        {% elif order.status == "Co" %} class="table-success"
+                                        {% elif order.status == "Ca" %} class="table-danger"
+                                        {% elif order.status == "Dy" %} class="table-info"
+                                        {% elif order.status == "Dd" %} class="table-success"
+                                        {% endif %} >
+                                    <th scope="row">{{ order.id }}</th>
+                                    <td>{{ order.get_status }}</td>
+                                    <td>{{ order.created }}</td>
+                                    <td>${{ orders.total_sum }}</td>
+                                    <td>
+                                        <a href="{% url "order:order" order.id %}">view</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                {% else %}
+                    <h1>No orders</h1>
+                {% endif %}
+        </div>
+    </section>
+{% endblock %}

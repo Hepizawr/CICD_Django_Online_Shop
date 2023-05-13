@@ -55,6 +55,7 @@
                                     class="caret"></span></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href={% url 'user:profile' %}>Profile</a></li>
+                                <li><a href={% url 'order:orders' %}>Orders</a></li>
                                 {% if user.is_superuser or user.is_staff %}
                                     <li><a href={% url 'admin:index' %}>Admin panel</a></li>
                                 {% endif %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section>
+        <div class="container pt-5 vh-100">
+            <div class="text-center mt-5">
+                <h1>Order №{{ order.first.id }}</h1>
+                <div class="orders mt-5">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Sum</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for orderItem in order.items %}
+                            <tr>
+                                <th scope="row">
+                                    {{ orderItem.product.name }}
+                                </th>
+                                <td>{{ orderItem.quantity }}</td>
+                                <td>${{ orderItem.product.actual_price }}</td>
+                                <td>${{ orderItem.sum }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <p class="float-right h4 mt-3">Total ${{ order.total_sum }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
