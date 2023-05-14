@@ -30,7 +30,7 @@
                                     <th scope="row">{{ order.id }}</th>
                                     <td>{{ order.get_status }}</td>
                                     <td>{{ order.created }}</td>
-                                    <td>${{ orders.total_sum }}</td>
+                                    <td>${{ order.total_sum }}</td>
                                     <td>
                                         <a href="{% url "order:order" order.id %}">view</a>
                                     </td>

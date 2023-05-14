@@ -71,6 +71,6 @@ def orders(request):
 def order(request, order_id):
     context = {
         'title': "Famms - order",
-        'order': Order.objects.filter(id=order_id)
+        'order': Order.objects.get(id=order_id)
     }
     return render(request, "orders/order.html", context)

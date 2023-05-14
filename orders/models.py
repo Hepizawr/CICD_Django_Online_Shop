@@ -35,15 +35,6 @@ class BasketItem(models.Model):
         return self.product.actual_price() * self.quantity
 
 
-class OrderQuerySet(models.QuerySet):
-    def items(self):
-        for order in self:
-            return OrderItem.objects.filter(order_id=order.id)
-
-    def total_sum(self):
-        return sum(orderItem.sum() for orderItem in self.items())
-
-
 class Order(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.SET_DEFAULT, default=None, null=True, blank=True)
     first_name = models.CharField(max_length=100)
@@ -62,8 +53,6 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    objects = OrderQuerySet.as_manager()
-
     def __str__(self):
         return f"{self.user.username} | Order #{self.id}"
 
@@ -76,6 +65,12 @@ class Order(models.Model):
             "Dd": "Delivered"
         }
         return order_status[f"{self.status}"]
+
+    def items(self):
+        return OrderItem.objects.filter(order_id=self.id)
+
+    def total_sum(self):
+        return sum(orderItem.sum() for orderItem in self.items())
 
 
 class OrderItemQuerySet(models.QuerySet):

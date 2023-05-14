@@ -1,5 +1,5 @@
 from django import forms
-from orders.models import Order
+from orders.models import Order, OrderItem
 
 
 class OrderCreateForm(forms.ModelForm):
@@ -26,3 +26,15 @@ class OrderCreateForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ("user", "first_name", "last_name", "email", "address")
+
+
+class OrderItemQuantityForm(forms.ModelForm):
+    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={
+        "class": "form-control",
+        "type": "number",
+        "min": "0",
+    }))
+
+    class Meta:
+        model = OrderItem
+        fields = ("quantity",)
