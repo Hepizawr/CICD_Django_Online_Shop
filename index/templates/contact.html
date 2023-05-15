@@ -22,12 +22,41 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="full">
-                        <form action="">
+                        <form method="post" action="">
+                        {% csrf_token %}
+                        {% if success %}
+                            <strong> Thanks a lot for your message!!!</strong>
+                        {% endif %}
                             <fieldset>
-                                <input type="text" placeholder="Enter your full name" name="name" required/>
-                                <input type="email" placeholder="Enter your email address" name="email" required/>
-                                <input type="text" placeholder="Enter subject" name="subject" required/>
-                                <textarea placeholder="Enter your message" required></textarea>
+                                <div > {{ form.name }}</div>
+                                {% if form.name.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong> {{   form.name.errors }}</strong>
+                                    </div>
+                                {%  endif %}
+
+                                <div > {{ form.email }}</div>
+                                    {% if form.email.errors %}
+                                        <div class="alert alert-danger">
+                                            <strong> {{   form.email.errors }}</strong>
+                                        </div>
+                                    {%  endif %}
+
+                                <div > {{ form.subject }}</div>
+                                    {% if form.subject.errors %}
+                                        <div class="alert alert-danger">
+                                            <strong> {{   form.subject.errors }}</strong>
+                                        </div>
+                                    {%  endif %}
+
+                                <div > {{ form.message }}</div>
+                                    {% if form.message.errors %}
+                                        <div class="alert alert-danger">
+                                            <strong> {{   form.message.errors }}</strong>
+                                        </div>
+                                    {%  endif %}
+
+
                                 <input type="submit" value="Submit"/>
                             </fieldset>
                         </form>
